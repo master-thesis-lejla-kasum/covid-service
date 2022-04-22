@@ -1,6 +1,5 @@
 package com.master.covidservice.covidservice.domain;
 
-import com.master.covidservice.covidservice.model.InstitutionEntity;
 import lombok.Getter;
 import lombok.Setter;
 
