@@ -2,7 +2,9 @@ package com.master.covidservice.covidservice.model;
 
 import com.master.covidservice.covidservice.domain.Application;
 import com.master.covidservice.covidservice.domain.Institution;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
 @Table(name = "institution")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class InstitutionEntity {
     @Id
     private UUID id;
