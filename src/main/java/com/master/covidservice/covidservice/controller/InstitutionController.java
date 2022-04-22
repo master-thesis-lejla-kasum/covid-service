@@ -25,14 +25,14 @@ public class InstitutionController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Valid
-    public Institution create(@Valid @RequestBody Institution role) {
-        return institutionService.add(role);
+    public Institution create(@Valid @RequestBody Institution institution) {
+        return institutionService.add(institution);
     }
 
     @PutMapping("/{id}")
     @Valid
-    public Institution update(@PathVariable UUID id, @Valid @RequestBody Institution role) {
-        return institutionService.update(id, role);
+    public Institution update(@PathVariable UUID id, @Valid @RequestBody Institution institution) {
+        return institutionService.update(id, institution);
     }
 
     @DeleteMapping("/{id}")

@@ -38,14 +38,14 @@ public class ArticleController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Valid
-    public Article create(@Valid @RequestBody Article role) {
-        return articleService.add(role);
+    public Article create(@Valid @RequestBody Article article) {
+        return articleService.add(article);
     }
 
     @PutMapping("/{id}")
     @Valid
-    public Article update(@PathVariable UUID id, @Valid @RequestBody Article role) {
-        return articleService.update(id, role);
+    public Article update(@PathVariable UUID id, @Valid @RequestBody Article article) {
+        return articleService.update(id, article);
     }
 
     @DeleteMapping("/{id}")

@@ -37,6 +37,7 @@ public class StatisticEntity {
     public Statistic toDomain() {
         Statistic statistic = new Statistic();
 
+        statistic.setId(this.getId());
         statistic.setDate(this.getDate());
         statistic.setTestedCases(this.getTestedCases());
         statistic.setPositiveCases(this.getPositiveCases());
