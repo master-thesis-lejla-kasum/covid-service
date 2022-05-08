@@ -8,13 +8,19 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.UUID;
 
 @SpringBootApplication
 public class CovidServiceApplication {
     private static Logger logger = LoggerFactory.getLogger(CovidServiceApplication.class);
+
+    @Bean
+    //@LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(CovidServiceApplication.class, args);
