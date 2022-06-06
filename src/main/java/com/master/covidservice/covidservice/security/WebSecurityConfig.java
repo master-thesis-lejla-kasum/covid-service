@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/v1/application")
                 .permitAll()
 
-                .antMatchers(HttpMethod.GET, "/api/v1/article", "/api/v1/article/{id}")
+                .antMatchers(HttpMethod.GET, "/api/v1/article", "/api/v1/article/{id}", "/api/v1/institution")
                 .permitAll()
 
                 .antMatchers(HttpMethod.GET, "/api/v1/statistic")
@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
         configuration.setAllowedMethods(Arrays.asList("*"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);

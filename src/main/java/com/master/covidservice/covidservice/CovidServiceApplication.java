@@ -35,11 +35,23 @@ public class CovidServiceApplication {
 
             InstitutionEntity institutionEntity = institutionRepository.save(new InstitutionEntity(
                     UUID.fromString("1dd22551-55f5-4ad6-97aa-9c5f716be275"),
+                    "Dom zdravlja Novi Grad",
                     "id-inst-number",
-                    "Dom zdravlja",
                     "FBIH",
                     "KS",
                     "Sarajevo",
+                    null,
+                    null,
+                    null
+            ));
+
+            InstitutionEntity institutionEntity2 = institutionRepository.save(new InstitutionEntity(
+                    UUID.fromString("1dd22551-55f5-4ad6-97aa-9c5f716be876"),
+                    "Dom zdravlja Jajce",
+                    "id-inst-number-2",
+                    "FBIH",
+                    "SBK",
+                    "Jajce",
                     null,
                     null,
                     null
