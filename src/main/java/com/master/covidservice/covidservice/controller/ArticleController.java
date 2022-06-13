@@ -18,8 +18,23 @@ public class ArticleController {
     private ArticleService articleService;
 
     @GetMapping
-    public List<Article> getAll() {
-        return articleService.getAll();
+    public List<Article> getAll(
+            @RequestParam Integer pageNumber,
+            @RequestParam Integer pageSize,
+            @RequestParam(required = false) String entity,
+            @RequestParam(required = false) String canton
+            ) {
+        return articleService.search(pageNumber, pageSize, entity, canton);
+    }
+
+    @GetMapping("/total")
+    public int getTotal(
+            @RequestParam Integer pageNumber,
+            @RequestParam Integer pageSize,
+            @RequestParam(required = false) String entity,
+            @RequestParam(required = false) String canton
+    ) {
+        return articleService.getTotalNumber(pageNumber, pageSize, entity, canton);
     }
 
     @GetMapping("/{id}")

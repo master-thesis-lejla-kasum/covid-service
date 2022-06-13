@@ -1,15 +1,12 @@
 package com.master.covidservice.covidservice.model;
 
 import com.master.covidservice.covidservice.domain.Article;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
@@ -17,6 +14,8 @@ import java.util.UUID;
 @Table(name = "article")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ArticleEntity {
     @Id
     @GeneratedValue
@@ -24,6 +23,7 @@ public class ArticleEntity {
 
     private String title;
     private Date date;
+    @Column(length = 10000)
     private String content;
     private boolean active;
 

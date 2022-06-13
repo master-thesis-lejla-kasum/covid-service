@@ -1,11 +1,12 @@
 package com.master.covidservice.covidservice.service;
 
 import com.master.covidservice.covidservice.domain.Article;
+import com.master.covidservice.covidservice.dto.ArticleSearchRequest;
 import com.master.covidservice.covidservice.exception.BadRequestException;
 import com.master.covidservice.covidservice.exception.EntityNotFoundException;
 import com.master.covidservice.covidservice.model.ArticleEntity;
 import com.master.covidservice.covidservice.model.InstitutionEntity;
-import com.master.covidservice.covidservice.repository.ArticleRepository;
+import com.master.covidservice.covidservice.repository.article.ArticleRepository;
 import com.master.covidservice.covidservice.repository.InstitutionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +18,34 @@ import java.util.stream.Collectors;
 
 @Service
 public class ArticleService {
+    private static final Integer DEFAULT_PAGE_NUMBER = 0;
+    private static final Integer DEFAULT_PAGE_SIZE = 10;
     @Autowired
     private ArticleRepository articleRepository;
     @Autowired
     private InstitutionRepository institutionRepository;
 
-    public List<Article> getAll() {
-        return articleRepository.findAll().stream()
+    public List<Article> search(Integer pageNumber, Integer pageSize, String entity, String canton) {
+        ArticleSearchRequest articleSearchRequest = new ArticleSearchRequest(
+                pageNumber != null ? pageNumber : DEFAULT_PAGE_NUMBER,
+                pageSize != null ? pageSize : DEFAULT_PAGE_SIZE,
+                entity,
+                canton
+        );
+
+        return articleRepository.search(articleSearchRequest).stream()
                 .map(ArticleEntity::toExtendedDomain)
                 .collect(Collectors.toList());
+    }
+
+    public int getTotalNumber(Integer pageNumber, Integer pageSize, String entity, String canton) {
+        ArticleSearchRequest articleSearchRequest = new ArticleSearchRequest(
+                pageNumber != null ? pageNumber : DEFAULT_PAGE_NUMBER,
+                pageSize != null ? pageSize : DEFAULT_PAGE_SIZE,
+                entity,
+                canton
+        );
+        return articleRepository.getTotalForSearch(articleSearchRequest);
     }
 
     public Article getById(UUID id) {
