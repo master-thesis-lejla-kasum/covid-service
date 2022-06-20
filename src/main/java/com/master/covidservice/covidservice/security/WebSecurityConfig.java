@@ -45,11 +45,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
 
                 .antMatchers(HttpMethod.GET, "/api/v1/application", "/api/v1/application/{id}")
-                .hasAuthority("Institution")
+                .hasAnyAuthority("Institution", "Admin")
                 .antMatchers(HttpMethod.PUT, "/api/v1/application/{id}")
-                .hasAuthority("Institution")
+                .hasAnyAuthority("Institution", "Admin")
                 .antMatchers(HttpMethod.DELETE, "/api/v1/application/{id}")
-                .hasAuthority("Institution")
+                .hasAnyAuthority("Institution", "Admin")
 
                 .antMatchers(HttpMethod.POST, "/api/v1/article")
                 .hasAuthority("Covid Rules Provider")
