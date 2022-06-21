@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/api/v1/article/{id}")
                 .hasAuthority("Covid Rules Provider")
 
-                .antMatchers(HttpMethod.GET, "/api/v1/statistic")
+                .antMatchers(HttpMethod.POST, "/api/v1/statistic")
                 .hasAuthority("Covid Statistic Provider")
 
                 .antMatchers(HttpMethod.PUT, "/api/v1/institution/{id}")
