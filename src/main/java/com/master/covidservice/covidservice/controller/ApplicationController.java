@@ -1,6 +1,8 @@
 package com.master.covidservice.covidservice.controller;
 
 import com.master.covidservice.covidservice.domain.Application;
+import com.master.covidservice.covidservice.domain.ApplicationType;
+import com.master.covidservice.covidservice.dto.ApplicationSearchRequest;
 import com.master.covidservice.covidservice.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +19,13 @@ public class ApplicationController {
     private ApplicationService applicationService;
 
     @GetMapping
-    public List<Application> getAll() {
-        return applicationService.getAll();
+    public List<Application> getAll(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String surname,
+            @RequestParam(required = false) ApplicationType type,
+            @RequestParam(required = false) Boolean processed
+    ) {
+        return applicationService.getAll(new ApplicationSearchRequest(name, surname, type, processed));
     }
 
     @GetMapping("/{id}")

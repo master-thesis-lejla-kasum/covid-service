@@ -1,10 +1,11 @@
 package com.master.covidservice.covidservice.service;
 
 import com.master.covidservice.covidservice.domain.Application;
+import com.master.covidservice.covidservice.dto.ApplicationSearchRequest;
 import com.master.covidservice.covidservice.exception.BadRequestException;
 import com.master.covidservice.covidservice.model.ApplicationEntity;
 import com.master.covidservice.covidservice.model.InstitutionEntity;
-import com.master.covidservice.covidservice.repository.ApplicationRepository;
+import com.master.covidservice.covidservice.repository.application.ApplicationRepository;
 import com.master.covidservice.covidservice.repository.InstitutionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class ApplicationService {
     @Autowired
     private InstitutionRepository institutionRepository;
 
-    public List<Application> getAll() {
-        return applicationRepository.findAll().stream()
+    public List<Application> getAll(ApplicationSearchRequest request) {
+        return applicationRepository.search(request).stream()
                 .map(ApplicationEntity::toExtendedDomain)
                 .collect(Collectors.toList());
     }

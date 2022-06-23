@@ -39,7 +39,7 @@ public class CovidServiceApplication {
 
             InstitutionEntity institutionEntity = institutionRepository.save(new InstitutionEntity(
                     UUID.fromString("1dd22551-55f5-4ad6-97aa-9c5f716be275"),
-                    "Dom zdravlja Novi Grad",
+                    "Dom zdravlja Novi Grad2",
                     "id-inst-number",
                     "FBIH",
                     "KS",
@@ -51,7 +51,7 @@ public class CovidServiceApplication {
 
             InstitutionEntity institutionEntity2 = institutionRepository.save(new InstitutionEntity(
                     UUID.fromString("1dd22551-55f5-4ad6-97aa-9c5f716be876"),
-                    "Dom zdravlja Jajce",
+                    "Dom zdravlja Jajce2",
                     "id-inst-number-2",
                     "FBIH",
                     "SBK",
@@ -63,7 +63,7 @@ public class CovidServiceApplication {
 
             InstitutionEntity institutionEntity3 = institutionRepository.save(new InstitutionEntity(
                     UUID.fromString("1dd22551-55f5-4ad6-97aa-9c5f716be395"),
-                    "Dom zdravlja Banja Luka",
+                    "Dom zdravlja Banja Luka2",
                     "id-inst-number-3",
                     "RS",
                     null,
