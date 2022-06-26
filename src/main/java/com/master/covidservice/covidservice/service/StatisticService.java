@@ -1,11 +1,13 @@
 package com.master.covidservice.covidservice.service;
 
 import com.master.covidservice.covidservice.domain.Statistic;
+import com.master.covidservice.covidservice.dto.StatisticSearchRequest;
 import com.master.covidservice.covidservice.exception.BadRequestException;
+import com.master.covidservice.covidservice.model.CustomStatisticEntity;
 import com.master.covidservice.covidservice.model.InstitutionEntity;
 import com.master.covidservice.covidservice.model.StatisticEntity;
 import com.master.covidservice.covidservice.repository.InstitutionRepository;
-import com.master.covidservice.covidservice.repository.StatisticRepository;
+import com.master.covidservice.covidservice.repository.statistic.StatisticRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +23,8 @@ public class StatisticService {
     @Autowired
     private InstitutionRepository institutionRepository;
 
-    public List<Statistic> getAll() {
-        return statisticRepository.findAll().stream()
-                .map(StatisticEntity::toExtendedDomain)
-                .collect(Collectors.toList());
+    public List<CustomStatisticEntity> getAll(StatisticSearchRequest request) {
+        return statisticRepository.search(request);
     }
 
     public Statistic add(Statistic statistic) {

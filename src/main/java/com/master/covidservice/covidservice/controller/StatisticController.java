@@ -2,17 +2,17 @@ package com.master.covidservice.covidservice.controller;
 
 import com.master.covidservice.covidservice.domain.Article;
 import com.master.covidservice.covidservice.domain.Statistic;
+import com.master.covidservice.covidservice.dto.StatisticSearchRequest;
+import com.master.covidservice.covidservice.model.CustomStatisticEntity;
 import com.master.covidservice.covidservice.service.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -23,8 +23,17 @@ public class StatisticController {
     private StatisticService statisticService;
 
     @GetMapping
-    public List<Statistic> getAll() {
-        return statisticService.getAll();
+    public List<CustomStatisticEntity> getAll(
+            @RequestParam(required = false) String entity,
+            @RequestParam(required = false) String canton,
+            @RequestParam(required = false) String municipality,
+            @RequestParam(required = false) String startDate,
+            @RequestParam(required = false) String endDate
+    ) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date start = startDate.isEmpty() ? null : formatter.parse(startDate);
+        Date end = endDate.isEmpty() ? null : formatter.parse(endDate);
+        return statisticService.getAll(new StatisticSearchRequest(entity, canton, municipality, start, end));
     }
 
     @PostMapping

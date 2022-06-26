@@ -1,7 +1,9 @@
 package com.master.covidservice.covidservice.model;
 
 import com.master.covidservice.covidservice.domain.Statistic;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -17,6 +19,8 @@ import java.util.UUID;
 @Table(name = "statistic")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class StatisticEntity {
     @Id
     @GeneratedValue
